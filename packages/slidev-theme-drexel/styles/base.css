@@ -1,0 +1,183 @@
+/* ==========================================================================
+   slidev-theme-drexel
+   Drexel blue + gold, minus the letterhead. Spec: docs/STYLE.md
+   Canvas is 980 x 551 px (16:9). All sizes below are in that space.
+   ========================================================================== */
+
+/* ---- Tokens ------------------------------------------------------------- */
+:root {
+  /* brand */
+  --dx-blue: #07294d;      /* titles, cover/section ground, strong text */
+  --dx-blue-2: #1d4f86;    /* links, secondary list markers */
+  --dx-gold: #ffc600;      /* accents on dark grounds, title rule, highlighter */
+  --dx-gold-deep: #d9a200; /* gold that holds up on paper (bullets, borders) */
+
+  /* surfaces + text */
+  --paper: #fbf9f4;        /* slide ground */
+  --paper-2: #f2eee4;      /* inline code, asides, code blocks */
+  --ink: #1a2433;          /* body text */
+  --muted: #6b7280;        /* captions, slide numbers */
+  --on-dark: #f3eee2;      /* body text on blue grounds */
+  --on-dark-muted: #9fb0c6;
+
+  /* semantic text colors (carried over from legacy decks; use sparingly) */
+  --tx-red: #c0162f;
+  --tx-blue: #1f5fcf;
+  --tx-green: #1d8a4a;
+  --tx-purple: #6b3fa0;
+
+  /* type scale */
+  --fs-body: 1.34rem;      /* ~21px */
+  --fs-h1: 2.3rem;
+  --fs-h2: 1.45rem;
+  --fs-small: 0.82em;
+
+  --slidev-code-background: var(--paper-2);
+  --slidev-code-font-size: 16px;
+  --slidev-code-line-height: 1.5;
+  --slidev-code-padding: 0.8rem 1.1rem;
+}
+
+/* ---- Base slide ----------------------------------------------------------- */
+.slidev-layout {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Source Sans 3', system-ui, sans-serif;
+  font-size: var(--fs-body);
+  line-height: 1.38;
+  padding: 1.9rem 3rem 1.5rem;
+  height: 100%;
+  position: relative; /* anchors .dx-pgnum */
+}
+
+/* ---- Headings ------------------------------------------------------------- */
+.slidev-layout h1,
+.slidev-layout h2,
+.slidev-layout h3 {
+  font-family: 'Bricolage Grotesque Variable', 'Source Sans 3', sans-serif;
+  color: var(--dx-blue);
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+}
+.slidev-layout h1 {
+  font-size: var(--fs-h1);
+  font-weight: 700;
+  margin: 0 0 1.15rem;
+  padding-bottom: 0.45rem;
+  position: relative;
+}
+.slidev-layout h1::after { /* the gold rule: the theme's signature */
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 2.6rem;
+  height: 0.28rem;
+  border-radius: 99px;
+  background: var(--dx-gold);
+}
+.slidev-layout h2 { font-size: var(--fs-h2); font-weight: 650; margin: 0.7rem 0 0.35rem; }
+.slidev-layout h3 { font-size: 1.1em; font-weight: 650; margin: 0.5rem 0 0.25rem; }
+.slidev-layout p { margin: 0.45rem 0; }
+
+/* ---- Lists ---------------------------------------------------------------- */
+/* level 1: gold squares; level 2: blue dashes; level 3: inherits dashes */
+.slidev-layout ul { list-style: none; padding-left: 1.25em; margin: 0.3rem 0; }
+.slidev-layout ul > li { position: relative; margin: 0.3em 0; }
+.slidev-layout ul > li::before {
+  content: '';
+  position: absolute;
+  left: -1.05em;
+  top: 0.52em;
+  width: 0.42em;
+  height: 0.42em;
+  border-radius: 2px;
+  background: var(--dx-gold-deep);
+}
+.slidev-layout li ul,
+.slidev-layout li ol { font-size: 0.88em; margin: 0.15rem 0; }
+.slidev-layout li ul > li { margin: 0.15em 0; }
+.slidev-layout li ul > li::before {
+  width: 0.5em;
+  height: 0.11em;
+  top: 0.72em;
+  border-radius: 0;
+  background: var(--dx-blue-2);
+  opacity: 0.7;
+}
+.slidev-layout ol { list-style: decimal; padding-left: 1.5em; margin: 0.3rem 0; }
+.slidev-layout ol ol { list-style: lower-alpha; }
+.slidev-layout ol > li { margin: 0.25em 0; padding-left: 0.2em; }
+.slidev-layout ol > li::marker { color: var(--dx-blue); font-weight: 700; }
+/* a list continued after a click keeps the rhythm of the one above it */
+.slidev-layout .slidev-vclick-target > ol,
+.slidev-layout .slidev-vclick-target > ul { margin-top: 0; }
+
+/* ---- Inline --------------------------------------------------------------- */
+.slidev-layout a {
+  color: var(--dx-blue-2);
+  text-decoration: underline;
+  text-decoration-color: var(--dx-gold);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+.slidev-layout strong { font-weight: 700; color: var(--dx-blue); }
+.slidev-layout small { font-size: var(--fs-small); color: var(--muted); }
+.slidev-layout code { font-family: 'JetBrains Mono', monospace; font-size: 0.86em; }
+.slidev-layout :not(pre) > code {
+  background: var(--paper-2);
+  padding: 0.05em 0.3em;
+  border-radius: 4px;
+}
+.mark { /* highlighter: <span class="mark">key idea</span> */
+  background: linear-gradient(transparent 55%, rgba(255, 198, 0, 0.55) 55%);
+  padding: 0 0.1em;
+}
+
+/* Semantic colors. Prefix is dx- on purpose: UnoCSS owns c-* and text-*. */
+.dx-red { color: var(--tx-red); }
+.dx-blue { color: var(--tx-blue); }
+.dx-green { color: var(--tx-green); }
+.dx-purple { color: var(--tx-purple); }
+
+/* ---- Figures -------------------------------------------------------------- */
+.figs { display: flex; gap: 1.25rem; justify-content: center; align-items: center; flex-wrap: wrap; margin: 0.6rem 0; }
+.fig { max-width: 100%; height: auto; object-fit: contain; mix-blend-mode: multiply; } /* white grounds melt into paper */
+.caption { font-size: var(--fs-small); color: var(--muted); text-align: center; }
+
+/* ---- Code + math ---------------------------------------------------------- */
+.slidev-layout pre.shiki { border-radius: 8px; }
+.katex { font-size: 1.05em; }
+.katex-display { margin: 0.6em 0; }
+
+/* ---- Slide number (in default, split and figure layouts) ------------------ */
+.dx-pgnum {
+  position: absolute;
+  right: 1.4rem;
+  bottom: 0.75rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+/* ---- Aside (components/Aside.vue, or class="aside") ----------------------- */
+.aside {
+  border-left: 0.3rem solid var(--dx-gold);
+  background: var(--paper-2);
+  padding: 0.45rem 0.85rem;
+  border-radius: 0 6px 6px 0;
+  font-size: 0.92em;
+  margin: 0.6rem 0;
+}
+.aside > :first-child { margin-top: 0; }
+.aside > :last-child { margin-bottom: 0; }
+.aside-label {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dx-blue-2);
+  margin-bottom: 0.15rem;
+}

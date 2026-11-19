@@ -1,0 +1,24 @@
+{
+  "name": "drexel-lectures",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "node tools/lecture.mjs dev",
+    "handout": "node tools/lecture.mjs handout",
+    "export": "node tools/lecture.mjs export",
+    "render": "node tools/lecture.mjs render",
+    "build": "node tools/lecture.mjs build",
+    "fit": "node tools/lecture.mjs fit",
+    "new": "node tools/lecture.mjs new",
+    "convert": "node tools/lecture.mjs convert",
+    "list": "node tools/lecture.mjs list",
+    "style-guide": "slidev packages/slidev-theme-drexel/example.md"
+  },
+  "devDependencies": {
+    "@slidev/cli": "52.20.1",
+    "playwright-chromium": "^1.65.1"
+  }
+}

@@ -1,0 +1,12 @@
+node_modules/
+dist/
+renders/
+handouts/
+.cache/
+.slidev/
+_measure.md
+_source/
+*.log
+.DS_Store
+# ink from the lecture in progress; archived folders (annotations/YYYY-MM-DD) are committed
+annotations/live/
