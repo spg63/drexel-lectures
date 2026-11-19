@@ -54,6 +54,10 @@ Follow `docs/STYLE.md`. The rules that get broken most:
 - After the first hand edit to `slides.md`, the deck is source, not output. `convert` refuses to overwrite it without `FORCE=1`.
 - Slides built from PowerPoint animations render with every state stacked. Rebuild those as click steps; don't ship the crop.
 
+## Git
+
+Personal repo, one author. Commit straight to `main`; no feature branches or PRs unless Sean asks for one.
+
 ## Don't
 
 - Don't commit `handouts/`, `renders/`, `dist/`, `.cache/` or `annotations/live/` (all git-ignored).
