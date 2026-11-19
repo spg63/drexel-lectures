@@ -9,7 +9,17 @@ npm install
 npx playwright install chromium   # for PDF/PNG export
 ```
 
-Converting PowerPoint decks also needs LibreOffice and poppler: `brew install --cask libreoffice && brew install poppler`.
+Converting PowerPoint decks also needs LibreOffice and poppler (only if you convert decks yourself):
+
+- macOS: `brew install --cask libreoffice && brew install poppler`
+- Linux / WSL: `sudo apt install libreoffice poppler-utils`
+
+### Windows (WSL)
+
+- **Clone into the Linux filesystem** (`~/code/drexel-lectures`), not under `/mnt/c/`. File watching across the Windows boundary is slow and misses changes, which breaks hot reload.
+- **Present from a Windows browser.** `npm run dev` serves on `http://localhost:3030`, which Windows reaches directly. If `--open` can't launch a browser from WSL, open the address yourself. Ink drawn there still saves into the repo's `annotations/live/`.
+- **Export needs Linux browser libraries** the first time: `npx playwright install-deps chromium` (asks for sudo).
+- Handouts land in `handouts/` inside WSL. From Windows: `\\wsl$\<distro>\home\<you>\...`, or run `explorer.exe handouts` from the repo.
 
 ## Teaching a lecture
 
